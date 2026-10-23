@@ -165,9 +165,10 @@
       if (values.repo && issue.repo !== values.repo) return false;
       if (needle) {
         const haystack = `${issue.title} ${issue.repo} ${issue.labels.join(" ")} ${repo.description}`.toLowerCase();
-        if (!haystack.includes(needle)) return false;
-      }
-      return true;
+        const words = needle.split(/\s+/).filter(Boolean);
+        if (!words.every(word => haystack.includes(word))) return false;
+      }      
+      return true;    
     });
 
     const sorters = {
