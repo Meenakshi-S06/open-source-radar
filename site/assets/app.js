@@ -54,6 +54,10 @@
     if (days <= 0) return "updated today";
     if (days === 1) return "updated yesterday";
     if (days < 60) return `updated ${days} days ago`;
+    if (days >= 365) {
+      const years = Math.floor(days / 365);
+      return `updated ${years} year${years === 1 ? "" : "s"} ago`;
+    }
     return `updated ${Math.round(days / 30)} months ago`;
   }
 
